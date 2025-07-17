@@ -1,0 +1,245 @@
+# Overview
+HistoryAsCode v2 is a revolutionary platform that transforms how computational historians share their research. Unlike traditional academic platforms that focus on finished products, HistoryAsCode emphasizes the HOW - making computational methods, workflows, and code as transparent and valuable as the historical insights they produce. Built on the principle that "process is as important as product," the platform creates a virtuous cycle where researchers can create (Lab), publish (Journal), discover experts (Directory), and collaborate on new projects.
+
+# Core Features
+
+## 1. The Lab - Integrated Workspace for Computational History
+- **Git-Backed Project Management**: Every project connects to a GitHub repository for full version control and transparency
+- **Visual Workflow Builder**: Kanban-style boards showing research progress from question to conclusion
+- **Annotated Toolbox**: Curated database of computational history tools (QGIS, Gephi, Voyant) linked to real projects and expert users
+- **Method Templates**: Pre-built scaffolding for the three core methods (spatial analysis, text/data analysis, network analysis)
+- **Milestone Tracking**: Research projects broken into manageable steps with progress visualization
+- **Team Collaboration**: Invite contributors, assign tasks, track contributions
+
+## 2. The Journal - Peer-Reviewable Computational Narratives
+- **Structured Article Template**: Historical Question → Data Collection → Method Applied → Interactive Findings → Interpretation
+- **Direct Lab Integration**: Every finding links directly to the code and data that produced it
+- **Embedded Interactive Visualizations**: Support for D3.js, Mapbox, and other visualization libraries
+- **Transparent Peer Review**: Reviews focus on methodological rigor alongside historical argument
+- **DOI Assignment**: Permanent citations for reproducible research
+- **Version Control**: Track article revisions and updates
+- **Multiple Export Formats**: PDF, BibTeX, JSON-LD for maximum interoperability
+
+## 3. The Directory - Cross-Institutional Discovery Engine
+- **Skills-Based Profiles**: Users tag expertise in both historical periods and computational methods
+- **Smart Search**: Find people, projects, and methods by any combination of criteria
+- **Expertise Matching**: AI-powered suggestions for collaboration based on complementary skills
+- **Cross-References**: Every tool shows who uses it and which projects employ it
+- **Institution-Agnostic**: Break down silos between universities and countries
+- **Collaboration Invitations**: "I'm interested" button on projects to express collaboration interest
+
+## 4. The Virtuous Cycle - Seamless Integration
+- **Lab → Journal**: One-click submission from completed projects to peer review
+- **Journal → Directory**: Automatic skill extraction from published articles
+- **Directory → Lab**: Collaboration matches lead to new joint projects
+- **Unified Search**: Find anything across all three components
+- **Reproducibility Verification**: Automated checks ensure code and data availability
+- **Citation Networks**: Track how methods and projects influence each other
+
+# User Experience
+
+## User Personas
+
+### The Seeker (Graduate Student)
+- Learning computational methods for dissertation research
+- Needs: Tutorials, examples, mentorship opportunities
+- Journey: Searches Directory for method → Finds expert → Views their Journal articles → Explores Lab code → Requests collaboration
+
+### The Publisher (Established Historian)
+- Has completed computational research to share
+- Needs: Prestigious venue, proper visualization support, permanent archiving
+- Journey: Completes project in Lab → Submits to Journal → Article published with full transparency → Profile updated in Directory
+
+### The Contributor (Technical Expert)
+- Developer/data scientist interested in historical problems
+- Needs: Interesting projects, clear documentation, collaboration tools
+- Journey: Browses Directory by technical skill → Finds projects needing help → Contributes to Lab → Co-authors Journal article
+
+## Key User Flows
+
+1. **Project Creation Flow**
+   - Choose method type (spatial/textual/network)
+   - Connect GitHub repository
+   - Set up project scaffold with milestones
+   - Invite collaborators
+   - Begin research with integrated tools
+
+2. **Publishing Flow**
+   - Complete project milestones in Lab
+   - Generate article from project data
+   - Submit for peer review
+   - Address reviewer comments
+   - Publish with DOI and full transparency
+
+3. **Discovery Flow**
+   - Search by method, period, or skill
+   - Filter results by availability, institution, language
+   - View detailed profiles and project portfolios
+   - Express interest or send collaboration request
+   - Begin joint project in Lab
+
+# Technical Architecture
+
+## Technology Stack
+- **Frontend**: SvelteKit (simpler than Next.js, perfect for our needs)
+- **Database**: Supabase (PostgreSQL + Auth + Realtime + Storage)
+- **Deployment**: Cloudflare Pages (edge performance, global CDN)
+- **Languages**: TypeScript for type safety, SQL for data operations
+- **Version Control**: Git/GitHub integration for all projects
+- **Visualization**: D3.js, Mapbox GL, Three.js support
+
+## Data Models
+
+### Core Entities
+- **computational_methods**: Categorized tools and techniques (spatial/textual/network)
+- **projects**: Research workspaces with method type, tools used, milestones
+- **articles**: Published narratives linked to projects and code
+- **users**: Profiles with historical and technical expertise
+- **tools**: Registry of software with documentation and examples
+- **collaborations**: Team formations and contribution tracking
+
+### Key Relationships
+- Projects USE computational methods
+- Articles DERIVE FROM projects
+- Users HAVE expertise in methods
+- Tools APPEAR IN projects
+- Experts COLLABORATE ON projects
+
+## APIs and Integrations
+- **GitHub API**: Repository management, code versioning
+- **ORCID**: Researcher identification and profile import
+- **CrossRef**: DOI registration and citation tracking
+- **Zenodo**: Data archiving and preservation
+- **OpenAlex**: Academic graph integration
+
+## Infrastructure Requirements
+- **Database**: PostgreSQL with pgvector for similarity search
+- **Storage**: Object storage for media and visualizations
+- **CDN**: Global content delivery for performance
+- **Search**: PostgreSQL full-text search initially
+- **Analytics**: Privacy-respecting metrics (Plausible/Umami)
+- **Monitoring**: Error tracking (Sentry), performance monitoring
+
+# Development Roadmap
+
+## Phase 1: Foundation (MVP)
+- Core database schema with methods as first-class citizens
+- Basic SvelteKit application structure
+- Supabase authentication and user profiles
+- Simple project creation in Lab
+- Initial Directory with search
+- Basic Journal article display
+
+## Phase 2: Lab Development
+- GitHub repository integration
+- Visual workflow builder with milestones
+- Annotated toolbox implementation
+- Method-specific project templates
+- Team collaboration features
+- Progress tracking and reporting
+
+## Phase 3: Journal Publishing
+- Rich article editor with template structure
+- Code and data linking system
+- Interactive visualization embedding
+- Peer review workflow
+- DOI integration
+- Export functionality
+
+## Phase 4: Directory Enhancement
+- Advanced search with facets
+- Skills-based matching algorithm
+- Collaboration suggestions
+- Cross-referencing system
+- Institution-agnostic profiles
+- Activity feeds and notifications
+
+## Phase 5: Integration & Polish
+- Seamless Lab→Journal submission
+- Automatic Directory updates
+- Unified search implementation
+- Reproducibility verification
+- Performance optimization
+- Comprehensive documentation
+
+## Phase 6: Community Features
+- Method-based forums
+- Tutorial system
+- Workshop hosting
+- Mentorship program
+- Achievement badges
+- Newsletter integration
+
+## Future Enhancements
+- Mobile applications
+- API for external integrations
+- Advanced AI features for method suggestion
+- Institutional partnerships
+- Grant integration tools
+- Citation impact tracking
+
+# Logical Dependency Chain
+
+1. **Database and Auth** (Foundation)
+   - Must exist before any features
+   - User system enables all personalization
+
+2. **Basic Lab** (Core Value)
+   - Projects are the atomic unit
+   - Everything else references projects
+
+3. **Simple Directory** (Discovery)
+   - Users need profiles before matching
+   - Search enables finding anything
+
+4. **Journal Structure** (Publishing)
+   - Articles need projects to reference
+   - Templates ensure consistency
+
+5. **Integration Layer** (Network Effects)
+   - Connects all components
+   - Creates the virtuous cycle
+
+6. **Enhanced Features** (Growth)
+   - Build on solid foundation
+   - Add value without complexity
+
+# Risks and Mitigations
+
+## Technical Challenges
+- **Risk**: Complex visualization integration
+- **Mitigation**: Start with basic embeds, progressively enhance
+
+## User Adoption
+- **Risk**: Historians reluctant to share code
+- **Mitigation**: Emphasize career benefits, provide examples
+
+## Scope Creep
+- **Risk**: Feature bloat making platform complex
+- **Mitigation**: Strict MVP focus, user feedback drives additions
+
+## Performance at Scale
+- **Risk**: Database queries slow with growth
+- **Mitigation**: Proper indexing, caching strategy from start
+
+## Sustainability
+- **Risk**: Ongoing maintenance costs
+- **Mitigation**: Institutional partnerships, freemium model
+
+# Appendix
+
+## Competitive Analysis
+- **GitHub**: Great for code, poor for narrative
+- **Zenodo**: Good for archiving, no collaboration features
+- **Academic journals**: Traditional publishing, no code integration
+- **DH Showcases**: Static displays, no process transparency
+
+## Success Metrics
+- 50+ active projects in first 3 months
+- 200+ registered researchers
+- 10+ cross-institutional collaborations
+- 80%+ projects with reproducible code
+- Growing weekly active users
+
+## Core Innovation
+HistoryAsCode is the first platform to treat computational methods in history as first-class citizens, making the research process as valuable, citable, and discoverable as the research outcomes. By connecting tools, projects, and people in a transparent ecosystem, we transform how computational historians work together across institutions and borders.
